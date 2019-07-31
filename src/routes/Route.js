@@ -4,15 +4,15 @@ import { Route, Redirect } from 'react-router-dom';
 
 // Default layouts
 // ~ is related to customize-cra, react-app-rewired, and babel-plugin-root-import
-// import AuthLayout from '~/pages/_layouts/auth';
-// import DefaultLayout from '~/pages/_layouts/default';
+import AuthLayout from '~/pages/_layouts/auth';
+import DefaultLayout from '~/pages/_layouts/default';
 
 export default function RouterWrapper({
   component: Component,
   isPrivate,
   ...rest
 }) {
-  const signed = true; // Is logged or not?
+  const signed = false; // Is logged or not?
 
   // if this is private route and user is not logged, redirect to login
   if (!signed && isPrivate) {
@@ -24,10 +24,19 @@ export default function RouterWrapper({
     return <Redirect to="/dashboard" />;
   }
 
-  //   const Layout = signed ? DefaultLayout : AuthLayout;
+  const Layout = signed ? DefaultLayout : AuthLayout;
 
   // return <Route {...rest} component={Component} />;
-  return <Route {...rest} render={props => <Component {...props} />} />;
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  );
 }
 
 RouterWrapper.propTypes = {
