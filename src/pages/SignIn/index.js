@@ -4,11 +4,15 @@ import { Form, Input } from '@rocketseat/unform';
 import logo from '~/assets/logo.png';
 
 export default function SignIn() {
+  function handleSubmit(data) {
+    console.tron.log(data);
+  }
+
   return (
     <>
       <img src={logo} alt="MeetApp" />
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input name="email" type="email" placeholder="Your e-mail" />
         <Input name="password" type="password" placeholder="Password" />
         <button type="submit">Login</button>
