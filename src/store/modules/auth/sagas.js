@@ -20,7 +20,6 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-
     history.push('/dashboard');
   } catch (err) {
     toast.error(
@@ -38,12 +37,15 @@ export function* signUp({ payload }) {
       name,
       email,
       password,
-      provider: true,
     });
 
     history.push('/');
+    toast.success('Your account was successfully created!');
   } catch (err) {
     toast.error('Register failure! Verify your data!');
+
+    // Log the error if any
+    console.tron.error(err);
     yield put(signFailure());
   }
 }
