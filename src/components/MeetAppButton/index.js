@@ -4,7 +4,7 @@ import { FaSpinner } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { SubButton } from './styles';
 
-export default function SubmitButton({ children, ...props }) {
+export default function MeetAppButton({ children, ...props }) {
   const loading = useSelector(state => state.auth.loading);
 
   return (
@@ -14,10 +14,10 @@ export default function SubmitButton({ children, ...props }) {
   );
 }
 
-SubmitButton.propTypes = {
+MeetAppButton.propTypes = {
   children: PropTypes.string,
 };
 
-SubmitButton.defaultProps = {
+MeetAppButton.defaultProps = {
   children: '',
 };

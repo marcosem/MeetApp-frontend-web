@@ -5,7 +5,7 @@ import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.png';
-import SubmitButton from '~/components/SubmitButton';
+import MeetAppButton from '~/components/MeetAppButton';
 
 import { signUpRequest } from '~/store/modules/auth/actions';
 
@@ -35,7 +35,7 @@ export default function SignUp() {
         <Input name="email" type="email" placeholder="Your e-mail" />
         <Input name="password" type="password" placeholder="Password" />
 
-        <SubmitButton>Create Account</SubmitButton>
+        <MeetAppButton type="submit">Create Account</MeetAppButton>
 
         <Link to="/">Already have an account</Link>
       </Form>

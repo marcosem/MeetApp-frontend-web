@@ -12,18 +12,25 @@ const rotate = keyframes`
 `;
 
 export const SubButton = styled.button.attrs(props => ({
-  type: 'submit',
   disabled: props.loading || props.disabled,
 }))`
   margin: 5px 0 0;
   height: 44px;
   background: #f94d6a;
+  font-size: 16px;
   font-weight: bold;
   color: #fff;
   border: 0;
   border-radius: 4px;
-  font-size: 16px;
   transition: background 0.2s;
+
+  display: flex;
+  flex-direction: row;
+
+  div {
+    margin: 0 7px;
+    padding: 0 7px;
+  }
 
   &:hover {
     background: ${darken(0.08, '#f94d6a')};

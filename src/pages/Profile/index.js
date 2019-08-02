@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import { FaPlusCircle } from 'react-icons/fa';
 import { Container } from './styles';
-import SubmitButton from '~/components/SubmitButton';
+import MeetAppButton from '~/components/MeetAppButton';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
 export default function Profile() {
   const [hasChange, setHasChange] = useState(false);
+
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
 
@@ -58,7 +60,12 @@ export default function Profile() {
           onChange={handleChange}
         />
 
-        <SubmitButton disabled={!hasChange}>Update profile</SubmitButton>
+        <MeetAppButton type="submit" disabled={!hasChange}>
+          <div>
+            <FaPlusCircle size={14} color="#fff" />
+          </div>
+          Update profile
+        </MeetAppButton>
       </Form>
     </Container>
   );
