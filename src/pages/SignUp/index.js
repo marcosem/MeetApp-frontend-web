@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-// import { FaSpinner } from 'react-icons/fa';
-// import { SubmitButton } from '~/pages/_layouts/auth/styles';
-import SubmitButton from '~/components/SubmitButton';
 import logo from '~/assets/logo.png';
+import SubmitButton from '~/components/SubmitButton';
 
 import { signUpRequest } from '~/store/modules/auth/actions';
 
@@ -23,7 +21,6 @@ const schema = Yup.object().shape({
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  // const loading = useSelector(state => state.auth.loading);
 
   function handleSubmit({ name, email, password }) {
     dispatch(signUpRequest(name, email, password));
@@ -45,9 +42,3 @@ export default function SignUp() {
     </>
   );
 }
-
-/*
-        <SubmitButton loading={loading ? 1 : 0}>
-          {loading ? <FaSpinner size={16} color="#fff" /> : 'Create Account'}
-        </SubmitButton>
-*/
