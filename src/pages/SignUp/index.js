@@ -1,11 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { FaSpinner } from 'react-icons/fa';
-import { SubmitButton } from '~/pages/_layouts/auth/styles';
+// import { FaSpinner } from 'react-icons/fa';
+// import { SubmitButton } from '~/pages/_layouts/auth/styles';
+import SubmitButton from '~/components/SubmitButton';
 import logo from '~/assets/logo.png';
 
 import { signUpRequest } from '~/store/modules/auth/actions';
@@ -22,7 +23,7 @@ const schema = Yup.object().shape({
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.loading);
+  // const loading = useSelector(state => state.auth.loading);
 
   function handleSubmit({ name, email, password }) {
     dispatch(signUpRequest(name, email, password));
@@ -37,12 +38,16 @@ export default function SignUp() {
         <Input name="email" type="email" placeholder="Your e-mail" />
         <Input name="password" type="password" placeholder="Password" />
 
-        <SubmitButton loading={loading ? 1 : 0}>
-          {loading ? <FaSpinner size={16} color="#fff" /> : 'Create Account'}
-        </SubmitButton>
+        <SubmitButton>Create Account</SubmitButton>
 
         <Link to="/">Already have an account</Link>
       </Form>
     </>
   );
 }
+
+/*
+        <SubmitButton loading={loading ? 1 : 0}>
+          {loading ? <FaSpinner size={16} color="#fff" /> : 'Create Account'}
+        </SubmitButton>
+*/

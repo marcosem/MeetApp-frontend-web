@@ -24,7 +24,7 @@ export default function Header() {
               <Link to="/profile">Profile</Link>
             </div>
           </Profile>
-          <LogoutButton type="button">Logout</LogoutButton>
+          <LogoutButton>Logout</LogoutButton>
         </aside>
       </Content>
     </Container>

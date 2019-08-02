@@ -48,7 +48,9 @@ export const Profile = styled.div`
   }
 `;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.button.attrs({
+  type: 'button',
+})`
   width: 71px;
   height: 44px;
   background: #d44056;
