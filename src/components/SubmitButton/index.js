@@ -4,11 +4,11 @@ import { FaSpinner } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { SubButton } from './styles';
 
-export default function SubmitButton({ children }) {
+export default function SubmitButton({ children, ...props }) {
   const loading = useSelector(state => state.auth.loading);
 
   return (
-    <SubButton loading={loading ? 1 : 0}>
+    <SubButton loading={loading ? 1 : 0} {...props}>
       {loading ? <FaSpinner size={16} color="#fff" /> : children}
     </SubButton>
   );

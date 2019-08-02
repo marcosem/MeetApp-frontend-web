@@ -28,6 +28,21 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.signed = false;
         break;
       }
+
+      // Manage loading for user changes:
+      case '@user/UPDATE_PROFILE_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@user/UPDATE_PROFILE_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@user/UPDATE_PROFILE_FAILURE': {
+        draft.loading = false;
+        break;
+      }
+
       default:
     }
   });

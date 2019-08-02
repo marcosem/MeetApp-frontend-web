@@ -13,7 +13,7 @@ const rotate = keyframes`
 
 export const SubButton = styled.button.attrs(props => ({
   type: 'submit',
-  disabled: props.loading,
+  disabled: props.loading || props.disabled,
 }))`
   margin: 5px 0 0;
   height: 44px;
