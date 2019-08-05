@@ -63,8 +63,8 @@ export default function Profile() {
         <MeetAppButton type="submit" disabled={!hasChange}>
           <div>
             <FaPlusCircle size={14} color="#fff" />
+            <span>Update profile</span>
           </div>
-          Update profile
         </MeetAppButton>
       </Form>
     </Container>

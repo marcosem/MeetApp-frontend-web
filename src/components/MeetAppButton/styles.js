@@ -24,12 +24,17 @@ export const SubButton = styled.button.attrs(props => ({
   border-radius: 4px;
   transition: background 0.2s;
 
-  display: flex;
-  flex-direction: row;
-
   div {
+    display: flex;
     margin: 0 7px;
     padding: 0 7px;
+
+    span {
+      font-size: 16px;
+      color: #fff;
+      margin-left: 6px;
+      padding-left: 6px;
+    }
   }
 
   &:hover {
