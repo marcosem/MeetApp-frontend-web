@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { FaPlusCircle, FaChevronRight } from 'react-icons/fa';
-import {
-  format,
-  isBefore,
-  // parseISO,
-} from 'date-fns';
+import { useDispatch } from 'react-redux';
+
+// import { format, isBefore } from 'date-fns';
+import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
+
+import { FaPlusCircle, FaChevronRight } from 'react-icons/fa';
+import { selectMeetupRequest } from '~/store/modules/meetup/actions';
+
 import MeetAppButton from '~/components/MeetAppButton';
 import { Container } from './styles';
-
 import api from '~/services/api';
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
@@ -25,9 +27,7 @@ export default function Dashboard() {
         const compareDate = utcToZonedTime(meetup.date, timezone);
 
         return {
-          id: meetup.id,
-          title: meetup.title,
-          past: isBefore(compareDate, new Date()),
+          ...meetup,
           formattedDate: format(compareDate, "d 'de' MMMM', às 'hh'h'", {
             locale: pt,
           }),
@@ -40,8 +40,9 @@ export default function Dashboard() {
     loadMeetups();
   }, []);
 
-  function handleMeetupDetails(id) {
-    console.tron.log(id);
+  function handleDetails(meetup) {
+    console.tron.log(meetup);
+    dispatch(selectMeetupRequest(meetup));
   }
 
   return (
@@ -62,10 +63,7 @@ export default function Dashboard() {
             <strong>{meetup.title}</strong>
             <div>
               <span>{meetup.formattedDate}</span>
-              <button
-                type="button"
-                onClick={() => handleMeetupDetails(meetup.id)}
-              >
+              <button type="button" onClick={() => handleDetails(meetup)}>
                 <FaChevronRight size={16} color="#fff" />
               </button>
             </div>

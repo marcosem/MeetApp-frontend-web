@@ -64,26 +64,3 @@ export const Container = styled.div`
     }
   }
 `;
-
-/*
-  li {
-    padding: 20px;
-    border-radius: 4px;
-    background: #fff;
-
-    opacity: ${props => (props.past ? 0.6 : 1)};
-
-    strong {
-      display: block;
-      color: ${props => (props.available ? '#999' : '#7159c1')};
-      font-size: 20px;
-      font-weight: normal;
-    }
-
-    span {
-      display: block;
-      margin-top: 3px;
-      color: ${props => (props.available ? '#999' : '#666')};
-    }
-  }
-*/
