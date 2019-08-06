@@ -12,6 +12,16 @@ export default function meetup(state = INITIAL_STATE, action) {
         break;
       }
 
+      case '@meetup/UNSELECT_MEETUP_REQUEST': {
+        draft.selectedMeetup = null;
+        break;
+      }
+
+      case '@auth/SIGN_OUT': {
+        draft.selectedMeetup = null;
+        break;
+      }
+
       default:
     }
   });

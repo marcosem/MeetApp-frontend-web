@@ -4,3 +4,9 @@ export function selectMeetupRequest(data) {
     payload: data,
   };
 }
+
+export function unselectMeetupRequest() {
+  return {
+    type: '@meetup/UNSELECT_MEETUP_REQUEST',
+  };
+}
