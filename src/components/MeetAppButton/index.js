@@ -15,9 +15,9 @@ export default function MeetAppButton({ children, ...props }) {
 }
 
 MeetAppButton.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.element,
 };
 
 MeetAppButton.defaultProps = {
-  children: '',
+  children: {},
 };

@@ -16,13 +16,22 @@ export const SubButton = styled.button.attrs(props => ({
 }))`
   margin: 5px 0 0;
   height: 44px;
-  background: #f94d6a;
+
   font-size: 16px;
   font-weight: bold;
   color: #fff;
   border: 0;
   border-radius: 4px;
   transition: background 0.2s;
+
+  ${props =>
+    props.blue
+      ? css`
+          background: #4dbaf9;
+        `
+      : css`
+          background: #f94d6a;
+        `}
 
   div {
     display: flex;
@@ -38,7 +47,14 @@ export const SubButton = styled.button.attrs(props => ({
   }
 
   &:hover {
-    background: ${darken(0.08, '#f94d6a')};
+    ${props =>
+      props.blue
+        ? css`
+            background: ${darken(0.08, '#4dbaf9')};
+          `
+        : css`
+            background: ${darken(0.08, '#f94d6a')};
+          `}
   }
 
   &[disabled] {
@@ -54,3 +70,5 @@ export const SubButton = styled.button.attrs(props => ({
       }
     `}
 `;
+
+//   background: #f94d6a;
