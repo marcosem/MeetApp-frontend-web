@@ -1,61 +1,48 @@
-// import React, { useState, useEffect } from 'react';
 import React from 'react';
-// import PropTypes from 'prop-types';
-
-import { Container } from './styles';
+import { useSelector } from 'react-redux';
+import { MdEdit, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
+import { Container, MeetupBody, ImageDiv, FooterData } from './styles';
 import MeetAppButton from '~/components/MeetAppButton';
 
-// import api from '~/services/api';
-
 export default function Details() {
-  /*
-  const [meetup, setMeetup] = useState([]);
+  const meetup = useSelector(state => state.meetup.selectedMeetup);
+  const banner_url = meetup.banner.url;
 
-  useEffect(() => {
-    const { match } = props;
-    const { id } = match.params;
-
-    async function loadMeetup() {
-      const response = await api.get(`/meetups/${id}`);
-
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-      const data = response.data.map(meetup => {
-        const compareDate = utcToZonedTime(meetup.date, timezone);
-
-        return {
-          id: meetup.id,
-          title: meetup.title,
-          past: isBefore(compareDate, new Date()),
-          formattedDate: format(compareDate, "d 'de' MMMM', às 'hh'h'", {
-            locale: pt,
-          }),
-        };
-      });
-
-      setMeetups(data);
-    }
-
-    loadMeetups();
-  }, []);
-
-*/
   return (
     <Container>
       <header>
-        <strong>MeetUp</strong>
-        <MeetAppButton type="button" />
+        <strong>{meetup.title}</strong>
+        <div>
+          <MeetAppButton type="button" blue>
+            <div>
+              <MdEdit size={16} color="#fff" />
+              <span>Edit</span>
+            </div>
+          </MeetAppButton>
+          <MeetAppButton type="button" disabled={!meetup.cancelable}>
+            <div>
+              <MdDeleteForever size={16} color="#fff" />
+              <span>Cancel</span>
+            </div>
+          </MeetAppButton>
+        </div>
       </header>
+      <MeetupBody>
+        <ImageDiv>
+          <img src={banner_url} alt="" />
+        </ImageDiv>
+        <strong>{meetup.description}</strong>
+        <FooterData>
+          <div>
+            <MdEvent size={16} color="#fff" opacity="0.6" />
+            <span>{meetup.formattedDate}</span>
+          </div>
+          <div>
+            <MdPlace size={16} color="#fff" opacity="0.6" />
+            <span>{meetup.location}</span>
+          </div>
+        </FooterData>
+      </MeetupBody>
     </Container>
   );
 }
-
-/*
-Details.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.number,
-    }),
-  }).isRequired,
-};
-*/

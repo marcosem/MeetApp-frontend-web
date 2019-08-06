@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
-import { FaPlusCircle } from 'react-icons/fa';
+import { MdAddCircle } from 'react-icons/md';
 import { Container } from './styles';
 import MeetAppButton from '~/components/MeetAppButton';
 import { updateProfileRequest } from '~/store/modules/user/actions';
@@ -62,7 +62,7 @@ export default function Profile() {
 
         <MeetAppButton type="submit" disabled={!hasChange}>
           <div>
-            <FaPlusCircle size={14} color="#fff" />
+            <MdAddCircle size={16} color="#fff" />
             <span>Update profile</span>
           </div>
         </MeetAppButton>
