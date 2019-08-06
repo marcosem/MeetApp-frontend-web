@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 
-import { FaPlusCircle, FaChevronRight } from 'react-icons/fa';
+import { MdAddCircle, MdChevronRight } from 'react-icons/md';
 import { selectMeetupRequest } from '~/store/modules/meetup/actions';
 
 import MeetAppButton from '~/components/MeetAppButton';
@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function loadMeetups() {
-      const response = await api.get('/meetups');
+      const response = await api.get('/mymeetups');
 
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -51,7 +51,7 @@ export default function Dashboard() {
         <strong>My meetups</strong>
         <MeetAppButton type="button">
           <div>
-            <FaPlusCircle size={14} color="#fff" />
+            <MdAddCircle size={16} color="#fff" />
             <span>New meetup</span>
           </div>
         </MeetAppButton>
@@ -64,7 +64,7 @@ export default function Dashboard() {
             <div>
               <span>{meetup.formattedDate}</span>
               <button type="button" onClick={() => handleDetails(meetup)}>
-                <FaChevronRight size={16} color="#fff" />
+                <MdChevronRight size={22} color="#fff" />
               </button>
             </div>
           </li>
