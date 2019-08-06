@@ -10,7 +10,7 @@ import { MdAddCircle, MdChevronRight } from 'react-icons/md';
 import { selectMeetupRequest } from '~/store/modules/meetup/actions';
 
 import MeetAppButton from '~/components/MeetAppButton';
-import { Container } from './styles';
+import { Container, MeetupList } from './styles';
 import api from '~/services/api';
 
 export default function Dashboard() {
@@ -59,7 +59,7 @@ export default function Dashboard() {
 
       <ul>
         {meetups.map(meetup => (
-          <li key={meetup.id}>
+          <MeetupList key={meetup.id} nonCancelable={!meetup.cancelable}>
             <strong>{meetup.title}</strong>
             <div>
               <span>{meetup.formattedDate}</span>
@@ -67,7 +67,7 @@ export default function Dashboard() {
                 <MdChevronRight size={22} color="#fff" />
               </button>
             </div>
-          </li>
+          </MeetupList>
         ))}
       </ul>
     </Container>

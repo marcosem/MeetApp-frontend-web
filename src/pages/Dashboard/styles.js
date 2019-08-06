@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 // import PerfectScrollBar from 'react-perfect-scrollbar';
 
 export const Container = styled.div`
@@ -27,40 +27,46 @@ export const Container = styled.div`
     grid-gap: 15px;
     margin-top: 30px;
   }
+`;
 
-  li {
-    padding: 20px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.2);
+export const MeetupList = styled.li`
+  padding: 20px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+
+  ${props =>
+    props.nonCancelable &&
+    css`
+      opacity: 0.5;
+    `}
+
+  strong {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  div {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
 
-    strong {
+    span {
+      margin-right: 15px;
+      padding-right: 15px;
       display: block;
+      font-size: 16px;
+      font-weight: normal;
+
       color: #fff;
-      font-size: 18px;
-      font-weight: bold;
+      opacity: 0.6;
     }
 
-    div {
-      display: flex;
-      flex-direction: row;
-
-      span {
-        margin-right: 15px;
-        padding-right: 15px;
-        display: block;
-        font-size: 16px;
-        font-weight: normal;
-
-        color: #fff;
-        opacity: 0.6;
-      }
-
-      button {
-        border: 0;
-        background: none;
-      }
+    button {
+      border: 0;
+      background: none;
     }
   }
 `;
