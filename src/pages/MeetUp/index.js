@@ -29,8 +29,6 @@ export default function MeetUp() {
     // add meetupDate to data set
     data.date = meetupDate;
 
-    console.tron.warn(data);
-
     // dispatch actons
     if (newMeetup) {
       dispatch(addMeetupRequest(data));
