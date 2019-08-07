@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import { SubButton } from './styles';
 
 export default function MeetAppButton({ children, ...props }) {
-  const loading = useSelector(state => state.auth.loading);
+  const loading = useSelector(
+    state => state.auth.loading || state.meetup.loading
+  );
 
   return (
     <SubButton loading={loading ? 1 : 0} {...props}>

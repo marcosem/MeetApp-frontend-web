@@ -7,7 +7,11 @@ import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 
 import { MdAddCircle, MdChevronRight } from 'react-icons/md';
-import { selectMeetupRequest } from '~/store/modules/meetup/actions';
+import {
+  selectMeetupRequest,
+  unselectMeetupRequest,
+} from '~/store/modules/meetup/actions';
+import history from '~/services/history';
 
 import MeetAppButton from '~/components/MeetAppButton';
 import { Container, MeetupList } from './styles';
@@ -28,7 +32,7 @@ export default function Dashboard() {
 
         return {
           ...meetup,
-          formattedDate: format(compareDate, "d 'de' MMMM', às 'hh'h'", {
+          formattedDate: format(compareDate, "d 'de' MMMM', às 'H'h'", {
             locale: pt,
           }),
         };
@@ -40,8 +44,12 @@ export default function Dashboard() {
     loadMeetups();
   }, []);
 
+  function handleNewMeetUp() {
+    dispatch(unselectMeetupRequest());
+    history.push('/meetup');
+  }
+
   function handleDetails(meetup) {
-    console.tron.log(meetup);
     dispatch(selectMeetupRequest(meetup));
   }
 
@@ -49,7 +57,7 @@ export default function Dashboard() {
     <Container>
       <header>
         <strong>My meetups</strong>
-        <MeetAppButton type="button">
+        <MeetAppButton type="button" onClick={handleNewMeetUp}>
           <div>
             <MdAddCircle size={16} color="#fff" />
             <span>New meetup</span>
