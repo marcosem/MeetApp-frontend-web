@@ -59,9 +59,14 @@ export function* updateMeetup({ payload }) {
       yield put(updateMeetupFailure());
     }
   } catch (err) {
-    toast.error('Unable to update the meetup! Verify your data!');
+    if (err.response.data.error) {
+      toast.error(`Error: ${err.response.data.error}`);
+    } else {
+      toast.error('Unable to update the meetup! Verify your data!');
+    }
+
     // Log the error if any
-    console.tron.error(err);
+    console.tron.error(err.response.data.error);
     yield put(updateMeetupFailure());
   }
 }

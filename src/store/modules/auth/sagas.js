@@ -22,9 +22,14 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     history.push('/dashboard');
   } catch (err) {
-    toast.error(
-      "Authentication failure! e-mail and/or password doesn't match!"
-    );
+    if (err.response.data.error) {
+      toast.error(`Error: ${err.response.data.error}`);
+    } else {
+      toast.error(
+        "Authentication failure! e-mail and/or password doesn't match!"
+      );
+    }
+
     yield put(signFailure());
   }
 }
