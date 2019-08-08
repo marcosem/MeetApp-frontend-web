@@ -49,3 +49,22 @@ export function addMeetupFailure() {
     type: '@meetup/ADD_MEETUP_FAILURE',
   };
 }
+
+export function cancelMeetupRequest(id, title) {
+  return {
+    type: '@meetup/CANCEL_MEETUP_REQUEST',
+    payload: { id, title },
+  };
+}
+
+export function cancelMeetupSuccess() {
+  return {
+    type: '@meetup/CANCEL_MEETUP_SUCCESS',
+  };
+}
+
+export function cancelMeetupFailure() {
+  return {
+    type: '@meetup/CANCEL_MEETUP_FAILURE',
+  };
+}

@@ -22,12 +22,14 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     history.push('/dashboard');
   } catch (err) {
-    if (err.response.data.error) {
+    if (err.response) {
       toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
     } else {
       toast.error(
         "Authentication failure! e-mail and/or password doesn't match!"
       );
+      console.tron.error(err);
     }
 
     yield put(signFailure());
@@ -47,10 +49,16 @@ export function* signUp({ payload }) {
     history.push('/');
     toast.success('Your account was successfully created!');
   } catch (err) {
-    toast.error('Register failure! Verify your data!');
+    if (err.response) {
+      toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
+    } else {
+      toast.error('Register failure! Verify your data!');
+      console.tron.error(err);
+    }
 
     // Log the error if any
-    console.tron.error(err);
+
     yield put(signFailure());
   }
 }

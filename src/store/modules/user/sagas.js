@@ -22,8 +22,10 @@ export function* updateProfile({ payload }) {
   } catch (err) {
     if (err.response.data.error) {
       toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
     } else {
       toast.error('Unable to update profile, verify your data!');
+      console.tron.error(err);
     }
 
     yield put(updateProfileFailure());

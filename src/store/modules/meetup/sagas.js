@@ -11,6 +11,8 @@ import {
   updateMeetupFailure,
   addMeetupSuccess,
   addMeetupFailure,
+  cancelMeetupSuccess,
+  cancelMeetupFailure,
 } from './actions';
 
 // ////////////////////////////////////////////////////////////////////////////
@@ -59,14 +61,14 @@ export function* updateMeetup({ payload }) {
       yield put(updateMeetupFailure());
     }
   } catch (err) {
-    if (err.response.data.error) {
+    if (err.response) {
       toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
     } else {
       toast.error('Unable to update the meetup! Verify your data!');
+      console.tron.error(err);
     }
 
-    // Log the error if any
-    console.tron.error(err.response.data.error);
     yield put(updateMeetupFailure());
   }
 }
@@ -78,9 +80,7 @@ export function* addMeetup({ payload }) {
   try {
     const { title, description, location, date, banner_id } = payload;
 
-    console.tron.warn(payload);
-
-    yield call(api.post, `meetups`, {
+    yield call(api.post, 'meetups', {
       title,
       description,
       location,
@@ -92,11 +92,41 @@ export function* addMeetup({ payload }) {
     yield put(addMeetupSuccess());
     history.push('/dashboard');
   } catch (err) {
-    toast.error('Unable to create the meetup! Verify meetup data!');
+    if (err.response) {
+      toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
+    } else {
+      toast.error('Unable to create the meetup! Verify meetup data!');
+      console.tron.error(err);
+    }
 
-    // Log the error if any
-    console.tron.error(err);
     yield put(addMeetupFailure());
+  }
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// Delete a meetup
+//
+export function* cancelMeetup({ payload }) {
+  try {
+    const { id, title } = payload;
+
+    yield call(api.delete, `meetups/${id}`);
+
+    toast.success(`Meetup '${title}' successfully canceled!`);
+
+    yield put(cancelMeetupSuccess());
+    history.push('/dashboard');
+  } catch (err) {
+    if (err.response) {
+      toast.error(`Error: ${err.response.data.error}`);
+      console.tron.error(err.response.data.error);
+    } else {
+      toast.error('Unable to cancel the meetup!');
+      console.tron.error(err);
+    }
+
+    yield put(cancelMeetupFailure());
   }
 }
 
@@ -104,4 +134,5 @@ export default all([
   takeLatest('@meetup/SELECT_MEETUP_REQUEST', selectMeetup),
   takeLatest('@meetup/UPDATE_MEETUP_REQUEST', updateMeetup),
   takeLatest('@meetup/ADD_MEETUP_REQUEST', addMeetup),
+  takeLatest('@meetup/CANCEL_MEETUP_REQUEST', cancelMeetup),
 ]);
