@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
 // import { format, isBefore } from 'date-fns';
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -14,7 +13,7 @@ import {
 import history from '~/services/history';
 
 import MeetAppButton from '~/components/MeetAppButton';
-import { Container, MeetupList } from './styles';
+import { Container, MeetupList, Scroll } from './styles';
 import api from '~/services/api';
 
 export default function Dashboard() {
@@ -65,19 +64,21 @@ export default function Dashboard() {
         </MeetAppButton>
       </header>
 
-      <ul>
-        {meetups.map(meetup => (
-          <MeetupList key={meetup.id} nonCancelable={!meetup.cancelable}>
-            <strong>{meetup.title}</strong>
-            <div>
-              <span>{meetup.formattedDate}</span>
-              <button type="button" onClick={() => handleDetails(meetup)}>
-                <MdChevronRight size={22} color="#fff" />
-              </button>
-            </div>
-          </MeetupList>
-        ))}
-      </ul>
+      <Scroll>
+        <ul>
+          {meetups.map(meetup => (
+            <MeetupList key={meetup.id} nonCancelable={!meetup.cancelable}>
+              <strong>{meetup.title}</strong>
+              <div>
+                <span>{meetup.formattedDate}</span>
+                <button type="button" onClick={() => handleDetails(meetup)}>
+                  <MdChevronRight size={22} color="#fff" />
+                </button>
+              </div>
+            </MeetupList>
+          ))}
+        </ul>
+      </Scroll>
     </Container>
   );
 }

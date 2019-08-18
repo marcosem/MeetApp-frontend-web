@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-// import PerfectScrollBar from 'react-perfect-scrollbar';
+import PerfectScrollBar from 'react-perfect-scrollbar';
 
 export const Container = styled.div`
   max-width: 900px;
@@ -69,4 +69,10 @@ export const MeetupList = styled.li`
       background: none;
     }
   }
+`;
+
+export const Scroll = styled(PerfectScrollBar)`
+  max-height: 580px;
+  padding: 5px 20px;
+  margin-top: 5px;
 `;
