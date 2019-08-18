@@ -17,6 +17,18 @@ export const Container = styled.div`
       font-size: 32px;
     }
 
+    div {
+      display: flex;
+      flex-direction: row;
+
+      h2 {
+        padding: 8px 10px 0 10px;
+        color: #fff;
+        font-size: 20px;
+        display: block;
+      }
+    }
+
     button {
       width: 172px;
     }
@@ -26,6 +38,20 @@ export const Container = styled.div`
     display: grid;
     grid-gap: 15px;
     margin-top: 30px;
+  }
+`;
+
+export const ArrowButton = styled.button.attrs(props => ({
+  disabled: props.disabled,
+}))`
+  border: 0;
+  background: none;
+  width: 36px;
+  padding-bottom: 8px;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 `;
 
